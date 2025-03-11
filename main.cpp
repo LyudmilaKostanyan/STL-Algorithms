@@ -41,5 +41,13 @@ int main()
     std::cout << "Remaining elements: ";
     for (auto i = it.first; i != arr.end(); i++)
         std::cout << *i << " ";
+
+    std::cout << std::endl << std::endl << "find()" << std::endl;
+    std::cout << "Test 1: Find num in array: ";
+    auto it_find = my_find(arr.begin(), arr.end(), 5);
+    if (it_find != arr.end())
+        std::cout << "Found" << std::endl;
+    else
+        std::cout << "Not found" << std::endl;
     return 0;
 }

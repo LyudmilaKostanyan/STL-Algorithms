@@ -24,3 +24,12 @@ std::pair<InputIt, UnaryFunc> my_for_each_n( InputIt first, Size n, UnaryFunc f 
         f(*first);
     return {first, f};
 }
+
+template< class InputIt, class T >
+InputIt my_find( InputIt first, InputIt last, const T& value )
+{
+    for (; first != last; first++)
+        if (*first == value)
+            return first;
+    return last;
+}
