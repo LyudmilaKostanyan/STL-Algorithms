@@ -16,7 +16,7 @@ bool isEven(int n) {
 int main()
 {
     std::vector<int> arr = {1, 2, 3, 4, 5};
-
+    
     std::cout << std::endl << "for_each()" << std::endl;
     std::cout << "Test 1: Functor:" << std::endl;
     Sum arr_sum = mila::for_each(arr.begin(), arr.end(), Sum());
@@ -29,12 +29,12 @@ int main()
         std::cout << value << " ";
     });
     std::cout << std::endl;
-
+    
     std::cout << std::endl << "for_each_n()" << std::endl;
     std::cout << "Test 1: Functor" << std::endl;
     Sum arr_sum_n = mila::for_each_n(arr.begin(), 3, Sum()).second;
     std::cout << "Array sum: " << arr_sum_n.getSum() << std::endl;
-
+    
     std::cout << "Test 2: Lambda function\n";
     std::cout << "Array elements after increment: ";
     auto it = mila::for_each_n(arr.begin(), 3, [](int value){
@@ -44,8 +44,8 @@ int main()
     std::cout << std::endl;
     std::cout << "Remaining elements: ";
     for (auto i = it.first; i != arr.end(); i++)
-        std::cout << *i << " ";
-
+    std::cout << *i << " ";
+    
     std::cout << std::endl << std::endl << "find()" << std::endl;
     std::cout << "Test 1: Find 5 in array: ";
     auto it_find = mila::find(arr.begin(), arr.end(), 5);
@@ -68,6 +68,16 @@ int main()
     std::cout << (mila::any_of(arr.begin(), arr.end(), isEven) == true ? "True" : "False") << std::endl;
     std::cout << "Test 3: Check if none of the elements are even: ";
     std::cout << (mila::none_of(arr.begin(), arr.end(), isEven) == true ? "True" : "False") << std::endl;
-
+    
+    
+    std::vector<int> arr1 = {4, 5};
+    std::cout << std::endl << std::endl << "find_first_of()" << std::endl;
+    std::cout << "Test 1: Find first element of arr1 in arr: ";
+    std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end())) << std::endl;
+    std::cout << "Test 2: Find first element of arr1 in arr that is divisible by the element of arr1: ";
+    std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end(), [](int num, int divisor) {
+        return num % divisor == 0;
+    })) << std::endl;
+    
     return 0;
 }

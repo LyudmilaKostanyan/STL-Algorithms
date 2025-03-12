@@ -76,4 +76,26 @@ namespace mila{
             return true;
         return false;
     }
+
+    template< class InputIt, class ForwardIt >
+    InputIt find_first_of( InputIt first, InputIt last, ForwardIt s_first, ForwardIt s_last )
+    {
+        for (;s_first != s_last; s_first++)
+        {
+            auto it = mila::find(first, last, *s_first);
+            if (it != last)
+                return it;
+        }
+        return last;
+    }
+
+    template< class InputIt, class ForwardIt, class BinaryPred >
+    InputIt find_first_of( InputIt first, InputIt last, ForwardIt s_first, ForwardIt s_last, BinaryPred p )
+    {
+        for (;s_first != s_last; s_first++)
+            for (; first != last; first++)
+                if (p(*first, *s_first))
+                    return first;
+        return last;
+    }
 }
