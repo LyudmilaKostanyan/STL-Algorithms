@@ -52,4 +52,28 @@ namespace mila{
                 return first;
         return last;
     }
+
+    template< class InputIt, class UnaryPred >
+    bool all_of( InputIt first, InputIt last, UnaryPred p )
+    {
+        if (mila::find_if_not(first, last, p) == last)
+            return true;
+        return false;
+    }
+
+    template< class InputIt, class UnaryPred >
+    bool any_of( InputIt first, InputIt last, UnaryPred p )
+    {
+        if (mila::find_if(first, last, p) != last)
+            return true;
+        return false;
+    }
+
+    template< class InputIt, class UnaryPred >
+    bool none_of( InputIt first, InputIt last, UnaryPred p )
+    {
+        if (mila::find_if(first, last, p) == last)
+            return true;
+        return false;
+    }
 }

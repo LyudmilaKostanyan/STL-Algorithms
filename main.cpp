@@ -61,5 +61,13 @@ int main()
     std::cout << "Test 1: Find first odd num in array: ";
     std::cout << *(mila::find_if_not(arr.begin(), arr.end(), isEven)) << std::endl;
     
+    std::cout << std::endl << std::endl << "all_of(), any_of(), none_of()" << std::endl;
+    std::cout << "Test 1: Check if all elements are even: ";
+    std::cout << (mila::all_of(arr.begin(), arr.end(), isEven) == true ? "True" : "False") << std::endl;
+    std::cout << "Test 2: Check if any element is even: ";
+    std::cout << (mila::any_of(arr.begin(), arr.end(), isEven) == true ? "True" : "False") << std::endl;
+    std::cout << "Test 3: Check if none of the elements are even: ";
+    std::cout << (mila::none_of(arr.begin(), arr.end(), isEven) == true ? "True" : "False") << std::endl;
+
     return 0;
 }
