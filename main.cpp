@@ -78,6 +78,14 @@ int main()
     std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end(), [](int num, int divisor) {
         return num % divisor == 0;
     })) << std::endl;
+
+    std::cout << std::endl << std::endl << "find_end()" << std::endl;
+    std::cout << "Test 1: Find last element of arr1 in arr: ";
+    std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end())) << std::endl;
+    std::cout << "Test 2: Find last element of arr1 in arr that is divisible by the element of arr1: ";
+    std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end(), [](int num, int divisor) {
+        return num % divisor == 0;
+    })) << std::endl;
     
     return 0;
 }

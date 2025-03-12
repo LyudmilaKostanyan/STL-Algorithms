@@ -98,4 +98,24 @@ namespace mila{
                     return first;
         return last;
     }
+
+    template< class ForwardIt1, class ForwardIt2 >
+    ForwardIt1 find_end( ForwardIt1 first, ForwardIt1 last, ForwardIt2 s_first, ForwardIt2 s_last )
+    {
+        for (auto it = last; it != first; it--)
+            for (;s_first != s_last; s_first++)
+                if (*s_first == *it)
+                    return it;
+        return last;
+    }
+
+    template< class ForwardIt1, class ForwardIt2, class BinaryPred >
+    ForwardIt1 find_end( ForwardIt1 first, ForwardIt1 last, ForwardIt2 s_first, ForwardIt2 s_last, BinaryPred p )
+    {
+        for (auto it = last; it != first; it--)
+            for (;s_first != s_last; s_first++)
+                if (p(*s_first,*it))
+                    return it;
+        return last;
+    }
 }
