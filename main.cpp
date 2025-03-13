@@ -15,7 +15,7 @@ bool isEven(int n) {
 
 int main()
 {
-    std::vector<int> arr = {1, 2, 3, 4, 5};
+    std::vector<int> arr = {1, 2, 3, 4, 5, 7, 4, 5, 6, 7, 8, 9, 10};
     
     std::cout << std::endl << "for_each()" << std::endl;
     std::cout << "Test 1: Functor:" << std::endl;
@@ -70,7 +70,7 @@ int main()
     std::cout << (mila::none_of(arr.begin(), arr.end(), isEven) == true ? "True" : "False") << std::endl;
     
     
-    std::vector<int> arr1 = {4, 5};
+    std::vector<int> arr1 = {4, 5, 6};
     std::cout << std::endl << std::endl << "find_first_of()" << std::endl;
     std::cout << "Test 1: Find first element of arr1 in arr: ";
     std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end())) << std::endl;
@@ -79,13 +79,15 @@ int main()
         return num % divisor == 0;
     })) << std::endl;
 
-    std::cout << std::endl << std::endl << "find_end()" << std::endl;
-    std::cout << "Test 1: Find last element of arr1 in arr: ";
-    std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end())) << std::endl;
-    std::cout << "Test 2: Find last element of arr1 in arr that is divisible by the element of arr1: ";
-    std::cout << *(mila::find_first_of(arr.begin(), arr.end(), arr1.begin(), arr1.end(), [](int num, int divisor) {
-        return num % divisor == 0;
-    })) << std::endl;
     
+    auto q = mila::search(arr.begin(), arr.end(), arr1.begin(), arr1.end());
+    for (; q != arr.end(); q++)
+        std::cout << *q << std::endl;
+    
+    auto p = mila::search(arr.begin(), arr.end(), arr1.begin(), arr1.end(), [](int num, int divisor) {
+        return num % divisor == 0;
+    });
+    for (; p != arr.end(); p++)
+        std::cout << *p << std::endl;
     return 0;
 }

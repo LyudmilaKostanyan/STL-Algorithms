@@ -99,6 +99,53 @@ namespace mila{
         return last;
     }
 
+    
+    template< class ForwardIt1, class ForwardIt2 >
+    ForwardIt1 search( ForwardIt1 first, ForwardIt1 last, ForwardIt2 s_first, ForwardIt2 s_last )
+    {
+        ForwardIt1 s_it;
+        ForwardIt1 start;
+        for (auto it = first; it != last; it++)
+        {
+            start = it;
+            for (s_it = s_first; s_it != s_last; s_it++)
+            {
+                if (*it != *s_it)
+                {
+                    s_it = s_first;
+                    break;
+                }
+                it++;
+            }
+            if (s_it == s_last)
+            return start;
+        }
+        return last;
+    }
+    
+    template< class ForwardIt1, class ForwardIt2, class BinaryPred >
+    ForwardIt1 search( ForwardIt1 first, ForwardIt1 last, ForwardIt2 s_first, ForwardIt2 s_last, BinaryPred p )
+    {
+        ForwardIt1 s_it;
+        ForwardIt1 start;
+        for (auto it = first; it != last; it++)
+        {
+            start = it;
+            for (s_it = s_first; s_it != s_last; s_it++)
+            {
+                if (!p(*it, *s_it))
+                {
+                    s_it = s_first;
+                    break;
+                }
+                it++;
+            }
+            if (s_it == s_last)
+            return start;
+        }
+        return last;
+    }
+    
     template< class ForwardIt1, class ForwardIt2 >
     ForwardIt1 find_end( ForwardIt1 first, ForwardIt1 last, ForwardIt2 s_first, ForwardIt2 s_last )
     {
@@ -108,7 +155,7 @@ namespace mila{
                     return it;
         return last;
     }
-
+    
     template< class ForwardIt1, class ForwardIt2, class BinaryPred >
     ForwardIt1 find_end( ForwardIt1 first, ForwardIt1 last, ForwardIt2 s_first, ForwardIt2 s_last, BinaryPred p )
     {
